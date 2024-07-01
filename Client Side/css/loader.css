@@ -1,0 +1,100 @@
+
+.cards{
+  max-width: 350px;
+  width: 100%;
+  background: #e8eaec;
+  padding-top: 20px;
+  display: row-reverse;
+  margin: auto;
+}
+#main-div{	
+  display: none;	
+}
+.cards .headers{
+  display: flex;
+  align-items: center;
+}
+.headers .imgs{
+  height: 50px;
+  width: 50px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 45px;
+  margin-left: 15px;
+}
+.headers .detail{
+  margin-left: 20px;
+}
+.detail span{
+  display: block;
+  background: #d9d9d9;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.detail .name{
+  height: 35px;
+  width: 100px;
+  margin-bottom: 45px;
+  
+}
+
+.cards .descriptions{
+  margin: 25px 0;
+}
+.descriptions .line{
+  background: #d9d9d9;
+  border-radius: 10px;
+  height: 13px;
+  margin: 10px 0;
+  overflow: hidden;
+  position: relative;
+}
+.descriptions .line-1{
+  width: calc(100% - 15%);
+}
+.descriptions .line-3{
+  width: calc(100% - 40%);
+}
+.cards .btns{
+  display: flex;
+}
+.cards .btns .btn1{
+  height: 50px;
+  width: 100%;
+  background: #d9d9d9;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+}
+.btns .btns-1{
+  margin-right: 1px;
+}
+.headers .imgs::before,
+.detail span::before,
+.descriptions .line::before,
+.btns .btn1::before{
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, #d9d9d9 0%, rgba(0,0,0,0.05) 20%, #d9d9d9 40%, #d9d9d9 100%);
+  background-repeat: no-repeat;
+  background-size: 450px 400px;
+  animation: shimmer 1s linear infinite;
+}
+.cards .imgs::before{
+  background-size: 650px 600px;
+}
+@keyframes shimmer {
+  0%{
+    background-position: -450px 0;
+  }
+  100%{
+    background-position: 450px 0;
+  }
+}

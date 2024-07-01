@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <title>Compatible Plants</title>	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#0134d4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css">		
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">   
+	<link rel="stylesheet" href="css/navbar_style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+	<link rel="stylesheet" href="css/home_style.css">
+	<link rel="stylesheet" href="css/no_internet_style.css">
+	<link rel="stylesheet" href="css/loader.css">
+	
+	
+</head>
+<body oncontextmenu="return false">
+  <div class="s-wrapper hide">  
+    <div class="s-toast">
+      <div class="s-content">
+        <div class="icon"><img style="width: 100px;" src="img/icons/wifi-on.png" alt=""></div>
+        <div class="details">
+          <span>INTERNET CONNECTED!</span>
+          <p>Your connection is now available.</p>
+        </div> 
+      </div>
+      <div class="close-icon"><img src="img/icons/wifi-close.png" alt=""></div>
+    </div>
+  </div>
+  
+  <!--LOADING DIV-->
+ <div style="margin-top:20px;" id="loading">
+ <br>
+ <div class="cards">
+    <div class="btns">
+      <div class="btn1 btns-1"></div>
+    </div>
+    <div class="descriptions">
+      <div class="line line-2"></div>
+	</div>
+	<hr>
+    <div class="headers">
+      <div class="imgs"></div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+    </div>
+    <div class="headers">
+      <div class="imgs"></div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+    </div>
+    <div class="headers">
+      <div class="imgs"></div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+    </div>
+    <div class="headers">
+      <div class="imgs"></div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+    </div>
+    <div class="headers">
+      <div class="imgs"></div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+    </div>
+    <div class="headers">
+      <div class="imgs"></div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+      <div class="detail">
+        <span class="name"></span>
+      </div>
+    </div>
+  </div>
+  <br><br>
+</div>
+
+<!--MAIN DIV--> 
+
+   <div class="header-area" id="headerArea">
+      <div class="container">
+        <div class="header-content header-style-four position-relative d-flex align-items-center justify-content-between">
+          <div class="back-button">
+			<a onclick="goBack()"><h3 class="mb-0"><i class="material-icons nav__icon">arrow_back</i>&nbsp;&nbsp;<font><output id="Brgy"/></font></a>
+			</div>
+        </div>
+      </div>
+    </div>
+	<div id="main-div">
+    <div class="page-content-wrapper">
+      <div class="py-4">
+        <div class="container direction-rtl">
+          <div class="row g-3">
+			<div class="box">
+				<i class="fa fa-search" aria-hidden="true"></i>
+					<input type="text" id="myInput" placeholder="Search the plant here...">
+			</div>
+			<table id="TablePlant" style="width:100%;" class="table table-hover">
+				<thead>
+					<tr>						
+                        <th class="header" scope="col">Image</th>
+						<th class="header" scope="col">Plant name</th>
+						<th class="header" scope="col">Action</th>
+					</tr>
+				</thead>
+			<tbody id="myTable"></tbody>
+			</table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+	<br>
+	<nav class="nav">
+		<a href="search-city.html" class="nav__link">
+			<i class="material-icons nav__icon">travel_explore</i>
+			<span class="nav__text">
+				<span class="letters">FIND SOIL</span>				
+			</span>
+		</a>		
+		<a href="search-plant.html" class="nav__link ">
+			<i class="material-icons nav__icon">content_paste_search</i>
+			<span class="nav__text">
+				<span class="letters">PLANT</span>
+			</span>
+		</a>
+		<a href="soil-testing.html" class="nav__link">
+			<i class="material-icons nav__icon">podcasts</i>
+			<span class="nav__text">
+				<span class="letters">TEST</span>
+			</span>
+		</a>
+		<a href="suggestion.html" class="nav__link">
+			<i class="material-icons nav__icon">add_location_alt</i>
+			<span class="nav__text">
+				<span class="letters">SUGGEST</span>
+			</span>
+		</a>		
+		
+		<a href="#" class="nav__link nav__link--active">
+			<i class="material-icons nav__icon">spa</i>
+			<span class="nav__text">
+				<font class="ml1"><span class="text-wrapper"><span class="letters">PLANTS</span></span></font>
+			</span>
+		</a>
+	</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+<script src="js/home_main.js"></script>
+<script src="js/animate.js"></script>
+<script src="js/index.umd.min.js"></script>
+<script>
+function goBack(){
+	window.history.back();		
+}
+
+PullToRefresh.init({
+	mainElement:'#loading',
+	onRefresh: function(){	
+		location.reload();
+	}
+});	
+
+</script>
+</body>
+</html>

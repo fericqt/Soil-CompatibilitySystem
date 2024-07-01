@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+	<title>View • Barangays</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/navbar_style.css">	
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/no_internet_style.css">
+	<link rel="stylesheet" href="css/loading.css">
+  <style>
+
+    #map {
+      position: absolute;
+      top:0;
+      bottom:0;
+      right:0;
+      left:0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      color: #323232;
+    }
+	table,th,td {
+	width: 100%;
+  border: 1px solid black;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body oncontextmenu="return false">
+  <!--NO INTER CONNECTION-->
+  <div class="s-wrapper hide">
+    <div class="s-toast">
+      <div class="s-content">
+        <div class="icon"><img src="icons/wifi-on.png" alt=""></div>
+        <div class="detail">
+          <span>INTERNET CONNECTED!</span>
+          <p>Your connection is now available.</p>
+        </div> 
+      </div>
+      <div class="close-icon"><img src="icons/wifi-close.png" alt=""></div>
+    </div>
+  </div>
+ 
+
+<!--MAIN DIV--> 
+   <div class="header-area" id="headerArea">
+      <div class="container">
+        <div class="header-content header-style-four position-relative d-flex align-items-center justify-content-between">
+          <div class="back-button">
+			<a onclick="goBack()"><h3 class="mb-0"><i class="material-icons nav__icon">arrow_back</i>&nbsp;&nbsp;Soil Location</h3></a>
+			</div>
+        </div>
+      </div>
+    </div>
+
+<div id="loader" style="text-align: center; display:flex; flex-direction:column; justify-content:center; min-height:90vh;">
+	<div class="spinner">
+		<div class="rect1"></div>
+		<div class="rect2"></div>
+		<div class="rect3"></div>
+		<div class="rect4"></div>
+		<div class="rect5"></div>
+	</div>
+</div>
+<div id="map"></div>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script src="https://unpkg.com/esri-leaflet@3.0.0/dist/esri-leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet-vector@3.0.0/dist/esri-leaflet-vector.js"></script>
+<script src="js/script.js"></script>
+<script>
+$(window).on('load',function(){
+	setTimeout(function(){
+		document.getElementById('loader').style.display = 'none';
+		document.getElementById('map').style.display = 'block';
+	}, 2000);
+});
+function goBack(){
+	window.history.back();		
+}
+
+$("document").ready(function(){
+	var brgyLong,brgyLatt,purok,soil_ph,soil_moisture,plants="",plantList=[];
+	var url = document.URL;
+	var plant = url.substring(url.lastIndexOf('=') + 1);
+
+	const apiKey = "AAPKa5230c9883934f2faf39c8c02903cf212a4_BQwp6ZLY36h1YzweLnhcVAeSroYql2CleLwUyyxQrcBtdYWqO-Zzqcbq2RsI";
+	const basemapEnum = "ArcGIS:Imagery";
+	const map = L.map('map', {
+	minZoom: 1,
+	zoomControl: false
+	}).setView([8.15355, 123.812529], 11);		
+	L.esri.Vector.vectorBasemapLayer(basemapEnum, {
+	apiKey: apiKey
+	}).addTo(map);
+	L.Control.textbox = L.Control.extend({
+		onAdd: function(map) {
+			
+		var text = L.DomUtil.create('div');
+		text.id = "info_text";
+		text.innerHTML = "<footer style='font-size: 11.5px; margin-bottom: -10px; opacity: 0.5; color: black; background:white '>Please be advised that we only have data in Ozamis city.</footer>"
+		return text;
+		},
+
+		onRemove: function(map) {
+			// Nothing to do here
+		}
+	});
+	L.control.textbox = function(opts) { return new L.Control.textbox(opts);}
+	L.control.textbox({ position: 'bottomright' }).addTo(map);
+	
+	getInfo(plant);
+		
+	function getInfo(plant) { 
+        $.getJSON("https://soilcompatibility-main.000webhostapp.com/api/getLocPlants.php?id="+plant, function (data) { 
+		
+          for (var i = 0; i < data.length; i++) { 
+
+			var marker = L.marker([data[i].lattitude, data[i].longitude]).addTo(map);
+
+			var popup = marker.bindPopup("<center>"+data[i].brgy_name +", "+data[i].purok +"</center><br><hr>"+ "<b>Soil pH:</b> "+data[i].ph_level +"<br>"+"<b>Soil pH Category:</b> "+data[i].soil_quality+"<br>"+"<b>Soil Moisture:</b> "+data[i].moisture+"<br>"+"<b>Soil Moisture Category:</b> "+data[i].moisture_condition+"<hr><br><b>Compatible plant:</b> "+data[i].plant_name+"<br><br>"+"<a href='home.html?id="+data[i].plant_name+"' class='btn btn-info w-100'><font color='white'>VIEW PLANT DETAILS</font></a>");
+			popup.openPopup();
+
+            
+			}
+        }); 
+     } 
+
+
+	
+
+	
+
+});
+
+</script>
+
+</html>

@@ -1,0 +1,148 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Soil Compatibility</title>
+    <!-- CSS files -->
+    <link href="dist/css/tabler.min.css" rel="stylesheet"/>
+    <link href="dist/css/tabler-flags.min.css" rel="stylesheet"/>
+    <link href="dist/css/tabler-payments.min.css" rel="stylesheet"/>
+    <link href="dist/css/tabler-vendors.min.css" rel="stylesheet"/>
+    <link href="dist/css/demo.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body class="antialiased border-top-wide border-primary d-flex flex-column">
+    <div class="page page-center">
+      <div class="container-tight py-4">
+	  <div class="card card-md">
+        <form  id="entry-form" method="POST" class="needs-validation" novalidate>
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Login to your account</h2>
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input type="text" class="form-control" id="user_name" name="user_name"  placeholder="Enter Username" required>
+			  <div class="valid-feedback">Valid.</div>
+			  <div class="invalid-feedback">Please fill out Username.</div>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">
+                Password
+              </label>
+             
+                <input type="password" class="form-control"  id="pwd" name="pwd"  placeholder="Password" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out Password.</div>
+              
+            </div>
+            <div class="form-footer">
+              <button id="login" type="submit" class="btn btn-teal w-100">Sign in</button>
+            </div>
+          </div>
+          
+        </form>
+        
+		</div>
+		
+        <div id="confirmation" class="alert alert-success invisible">
+    		<span class="fas fa-thumbs-up"></span> Access Granted.
+    	</div>
+    	<div id="confirmation_failed" class="alert alert-danger invisible">
+    		<span class="fas fa-ban"></span> Access Denied!
+    	</div>
+        <center><a id="dl" href="apk/SoilCompatibility.zip" download class="btn btn-info w-80">Click here to download the client app <i style="margin-left:10px;" class="fa fa-download"></i></a><br><br>
+        <p id="display" style="display: none; color:red">After the download is complete, extract first the zip file and install the 'SoilCompatibility.apk' file.</p></center>
+      </div>
+      
+    </div>
+    <!-- Libs JS -->
+    <!-- Tabler Core -->
+	<script src="dist/js/jquery.min.js"></script>
+    <script src="dist/js/tabler.min.js"></script>
+	
+	<script>
+    document.getElementById("dl").addEventListener("click", displayText);
+    function displayText() {
+        document.getElementById("display").style.display = 'block';
+    }
+	
+	function setCookie(cName, cValue, expDays) {
+		let date = new Date();
+		date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+		const expires = "expires=" + date.toUTCString();
+		document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+	  }
+	  
+	  
+	 (function() {
+	  
+	  'use strict';
+	  window.addEventListener('load', function() {
+		// Get the forms we want to add validation styles to
+		var forms = document.getElementsByClassName('needs-validation');
+		// Loop over them and prevent submission
+		var validation = Array.prototype.filter.call(forms, function(form) {
+		  form.addEventListener('submit', function(event) {
+			if (form.checkValidity() === false) {
+			  event.preventDefault();
+			  event.stopPropagation();
+			}
+			else {
+				event.preventDefault();
+
+                var url = "api/check-user.php";
+					$.post(url, $("#entry-form").serialize(), function(data) {
+					//alert(data);
+					
+					if(data == "Access Denied"){
+						alert("Access Denied");
+						$("#confirmation").removeClass().hide();
+						$("#confirmation_failed").removeClass("invisible");
+						$("#confirmation_failed").fadeOut(3000);
+					}
+					else {
+					    
+					    setCookie("user_name", data[0].username, 1);
+					    setCookie("pwd", data[0].password, 1);
+						$("#entry-card").addClass("invisible");
+						$("#confirmation").removeClass("invisible");
+						alert("Access Granted");
+						window.location.replace('main.html');
+					}
+				});
+                
+			}
+			form.classList.add('was-validated');
+		  }, false);
+		});
+	  }, false);
+	  
+	  
+	})();
+		function getCookie(cName) {
+	    const name = cName + "=";
+	    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+	    const cArr = cDecoded .split('; ');
+	    let res;
+	    cArr.forEach(val => {
+		  if (val.indexOf(name) === 0) res = val.substring(name.length);
+	    })
+	    return res;
+	  }
+	var user_name = getCookie('user_name');
+	var pwd = getCookie('pwd');
+	  
+	  //alert(usr + " " + pwd + " " + uty);
+	  
+	if(user_name != undefined){
+	    window.location.replace('main.html');
+	      
+	 }
+	     
+	 
+			
+  </script>
+  </body>
+</html>

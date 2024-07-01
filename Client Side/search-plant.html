@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+	<title>Search • Plant</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/navbar_style.css">	
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/no_internet_style.css">
+</head>
+<body oncontextmenu="return false">
+  <!--NO INTER CONNECTION-->
+  <div class="s-wrapper hide">
+    <div class="s-toast">
+      <div class="s-content">
+        <div class="icon"><img src="img/icons/wifi-on.png" alt=""></div>
+        <div class="details">
+          <span>INTERNET CONNECTED!</span>
+          <p>Your connection is now available.</p>
+        </div> 
+      </div>
+      <div class="close-icon"><img src="img/icons/wifi-close.png" alt=""></div>
+    </div>
+  </div>
+
+
+<!--MAIN DIV--> 
+   <div class="header-area" id="headerArea">
+      <div class="container">
+        <div class="header-content header-style-four position-relative d-flex align-items-center justify-content-center">
+			<h3 class="mb-0">Search Plant</h3>		
+        </div>		
+      </div>
+    </div>
+	
+	<div>
+    <div class="page-content-wrapper py-3">
+      <div class="container">
+        <div class="card user-info-card mb-3">
+          <div class="card-body d-flex align-items-center">
+			<p style="font-size: 17px;">How it works?<br>After choosing your desired plant, the system will display the list of barangays together with the soil pH and soil moisture that are compatible with the chosen plant.</p>
+          </div>
+        </div>
+		<!--search plant-->
+        <div id="input" style="display: block;" class="card mb-3 shadow-sm">
+         <div class="card-body direction-rtl">
+			<center><p id="message"></p></center>
+			<p style="font-size:20px; font-weight:bold;">Search from plant</p>
+			<hr style="color: black"/>
+             <form action="" id="entry-form" class="test-form" method="POST">
+              <div class="form-group mb-3">		
+                <label class="form-label" for="plant">Select plant name:</label>
+                <select name="plant" style="width:100%;" id="plant"></select>
+              </div>         
+              <button onclick="searchPlant(document.getElementById('plant').value)" class="btn btn-success w-100" id="submit" type="submit"><span style="display: block;" id="test">SEARCH</span><span style="display: none;"id="load">PROCESSING</span></button>
+            </form>
+          </div>
+        </div>
+		<!--result-->
+        <div id="result" style="display: none;"  class="card mb-3 shadow-sm">
+          <div class="card-body direction-rtl">		  
+			<table id="TablePlant" style="width:100%;" class="table table-hover">
+				<thead>
+					<tr>
+                        <th class="header" scope="col">Barangay</th>
+						<th class="header" scope="col">Plant</th>
+						<th class="header" scope="col">Soil pH</th>
+						<th class="header" scope="col">Soil Moisture</th>
+					</tr>
+				</thead>
+			<tbody id="myTable"></tbody>
+			</table>					
+		  </div>
+		</div>
+		<div style="display:none" id="geoLocation">
+			<button  id="button" class="btn btn-success w-100" onclick="testAgain();"><span style="display: block" id="t_again">SEARCH AGAIN</span><span style="display: none;" id="countdown">SEARCH AGAIN 5s</span><span style="display: none;" id="loadd">PLEASE WAIT</span></button>
+			<button style="margin-top: 10px;" class="btn btn-info w-100" onclick="viewMap(document.getElementById('plant').value)">VIEW MAP</button>
+		</div>	
+		
+      </div>
+    </div>
+</div>
+	<br>
+	<nav class="nav">
+		<a href="search-city.html" class="nav__link">
+			<i class="material-icons nav__icon">travel_explore</i>
+			<span class="nav__text">
+				<span class="letters">FIND SOIL</span>				
+			</span>
+		</a>	
+		<a href="search-plant.html" class="nav__link   nav__link--active">
+			<i class="material-icons nav__icon">content_paste_search</i>
+			<span class="nav__text">
+				<font class="ml1"><span class="text-wrapper"><span class="letters">PLANT</span></span></font>
+			</span>
+		</a>
+		<a href="soil-testing.html" class="nav__link ">
+			<i class="material-icons nav__icon">podcasts</i>
+			<span class="nav__text">
+				<span class="letters">TEST</span>
+			</span>
+		</a>	
+		<a href="suggestion.html" class="nav__link">
+			<i class="material-icons nav__icon">add_location_alt</i>
+			<span class="nav__text">
+				<span class="letters">SUGGEST</span>
+			</span>
+		</a>
+
+	</nav>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="js/animate.js"></script>
+<script>
+var list = [];
+$(document).ready(function(){
+	$.ajax({    //create an ajax request to display.php
+	type: "GET",
+	url: "https://soilcompatibility-main.000webhostapp.com/api/plant-list.php",                          
+	success: function(response){
+		var list = response;
+		plant(list);
+	}	
+	
+});
+});	
+plant(list);
+function plant(list){
+
+	if(list.length===0){
+		list = ["Loading..."]
+	}
+	var option = "";
+	for(var i=0; i<list.length; i++){
+		option+= '<option value="'+ list[i] +'">' + list[i] + "</option>"         
+	}
+	document.getElementById("plant").innerHTML = option;
+}
+
+
+
+
+function testAgain()
+{
+	document.getElementById('t_again').style.display = 'none';
+	document.getElementById('loadd').style.display = 'block';
+	document.getElementById('button').disabled = true;
+	setTimeout(function(){
+		location.reload();
+	},3000);
+	
+
+}
+		
+
+	
+function count(){
+	
+	var timeleft = 4;
+	var downloadTimer = setInterval(function(){
+	if(timeleft <= 0){
+		clearInterval(downloadTimer);
+		document.getElementById("button").disabled = false;
+		document.getElementById('t_again').style.display = 'block';
+		document.getElementById('countdown').style.display = 'none';
+	} else {
+		document.getElementById("countdown").innerHTML = "SEARCH AGAIN "+timeleft+"s";
+		document.getElementById("button").disabled = true;
+		
+	}
+	timeleft -= 1;
+	}, 1000);
+}
+function searchPlant(plant){
+if((plant === "Loading...") || (plant === null))
+{
+	alert("Invalid Plant");
+}else{
+
+document.getElementById('submit').disabled = true;
+document.getElementById('test').style.display = 'none';
+document.getElementById('load').style.display = 'block';
+setTimeout(function(){
+	document.getElementById('button').disabled = true;
+	document.getElementById('input').style.display = 'none';
+	document.getElementById('result').style.display = 'block';
+	document.getElementById('t_again').style.display = 'none';
+	count();
+	document.getElementById('countdown').style.display = 'block';
+	document.getElementById('geoLocation').style.display = 'block';
+},3000);	
+$(document).ready(function(){
+    $('#TablePlant').DataTable( {
+      "pagingType": "simple_numbers",
+      "searching": false,
+	  "paging": false,
+	  "bInfo":false,
+	  "bDestroy": true,
+      "ordering": false,
+      "lengthChange": false,
+      "ajax": "https://soilcompatibility-main.000webhostapp.com/api/searchPlant.php?id="+plant,
+      "columns": [					
+					{ "data": "Brgy" },
+					{ "data": "Plant" },
+					{ "data": "Soil pH" },
+					{ "data": "Soil Moisture" }				
+				]
+			});
+			
+            $('.dataTables_length').addClass('bs-select');
+			
+			$("#myInput").on("keyup", function(){
+				var value = $(this).val().toLowerCase();
+				$("#myTable tr").filter(function(){
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) == 0)
+				});
+			});
+			$.fn.dataTable.ext.errMode = () => alert('Something went wrong. Please try again!');		
+	});
+}		
+}
+function viewMap(plant){
+
+	var ids = plant; 
+
+	window.location.href = "soil-map-brgys.html?id="+ids;
+			
+}
+
+</script>
+</html>

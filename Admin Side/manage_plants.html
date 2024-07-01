@@ -1,0 +1,485 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Soil Compatibility</title>
+    <!-- CSS files -->
+    <link href="./dist/css/tabler.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-flags.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-payments.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-vendors.min.css" rel="stylesheet"/>
+    <link href="./dist/css/demo.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="dist/css/tablestyle.css" >
+  </head>
+  <body class="antialiased">
+    <div class="wrapper">
+      <div class="sticky-top">
+        <header class="navbar navbar-expand-md navbar-light d-print-none ">
+          <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+              <a href="main.html">
+                <img src="./static/logos.png" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+              </a>
+            </h1>
+            <div class="navbar-nav flex-row order-md-last">
+              <div class="nav-item dropdown">
+                <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                  <span class="avatar avatar-sm" style="background-image: url(./static/avatars/profiles.jpg)"></span>
+                  <div class="d-none d-xl-block ps-2">
+                  <div id="user_login" ></div>
+                  <div class="mt-1 small text-muted">Admin</div>
+                </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <a id="logout" href="#" class="dropdown-item">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="navbar-expand-md ">
+          <div class="collapse navbar-collapse" id="navbar-menu">
+            <div class="navbar navbar-expand-md navbar-light  d-print-none ">
+              <div class="container-xl">
+                <ul class="navbar-nav">
+                  <li class="nav-item ">
+                    <a class="nav-link" href="main.html" >
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+                      </span>
+                      <span class="nav-link-title">
+                        Home
+                      </span>
+                    </a>
+                  </li>
+                 
+				   <li class="nav-item">
+                    <a class="nav-link" href="manage_users.html" >
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><<polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3" /><line x1="12" y1="12" x2="20" y2="7.5" /><line x1="12" y1="12" x2="12" y2="21" /><line x1="12" y1="12" x2="4" y2="7.5" /><line x1="16" y1="5.25" x2="8" y2="9.75" /></svg>
+                      </span>
+                      <span class="nav-link-title">
+                        Manage Users
+                      </span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="manage_soil.html" >
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 11 12 14 20 6" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
+                      </span>
+                      <span class="nav-link-title">
+                        Manage Soil
+                      </span>
+                    </a>
+                  </li>
+				  <li class="nav-item">
+                    <a class="nav-link" href="manage_plants.html" >
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="6" height="5" rx="2" /><rect x="4" y="13" width="6" height="7" rx="2" /><rect x="14" y="4" width="6" height="7" rx="2" /><rect x="14" y="15" width="6" height="5" rx="2" /></svg>
+                      </span>
+                      <span class="nav-link-title">
+                        Manage Plants
+                      </span>
+                    </a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="manage_fertilizer.html" >
+                      <span class="nav-link-icon d-md-none d-lg-inline-block">
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="7" r="3" /><circle cx="17" cy="16" r="3" /><circle cx="7" cy="16" r="3" /></svg></span>
+                      <span class="nav-link-title">
+                        Manage Fertilizer
+                      </span>
+                    </a>
+                  </li>
+				  
+                </ul>
+                <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
+                <form action="." method="get">
+                  <div class="input-icon">
+                    <span class="input-icon-addon">
+                      <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+                    </span>
+                    <input type="text" id="myInput" class="form-control" placeholder="Search…" aria-label="Search in website">
+                  </div>
+                </form>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-wrapper">
+        <div class="container-xl">
+		<br>
+          <!-- Page title -->
+		  <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last d-sm-none ">
+                  <form action="." method="get">
+                    <div class="input-icon">
+                      <span class="input-icon-addon ">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+                      </span>
+                      <input type="text" id="myInput" class="form-control border border-success form-control-rounded" placeholder="Search…" aria-label="Search in website">
+                    </div>
+                  </form>
+                </div>
+				
+          <div class="page-header d-print-none">
+			
+            <div class="row align-items-center">
+              
+              <!-- Page title actions -->
+              <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                  
+                  <a href="add_plants.html" class="btn btn-teal btn-pill d-sm-inline-block">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+					Add Plants
+                  </a>
+				  
+              </div>
+			  
+            </div>
+			
+          </div>
+		  <br>
+			<div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                  Plants Records
+                </div>
+                
+              </div>
+        </div>
+        <div class="page-body">
+			<div class="container-xl">
+				
+				<div class="col-12">
+                <div class="card">
+                  
+				  
+                  <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap datatable" id="view">
+                      <thead>
+                        <tr>
+                          
+						  <th>ID</th>
+						  <th>Image</th>
+                          <th>Plant Name</th>						  
+                          <th>Plant Type</th>
+                          <th>Plant Informations</th>
+						  <th>Recommended Fertilizer</th>
+						  <th>Action</th>
+						  <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody id="myTable">
+                        
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+			  
+			</div>
+		</div>
+		
+		<div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+			
+          <div class="modal-body">
+            <div class="modal-title">Are you sure?</div>
+            <div>Do you really want to remove plant data? What you've done cannot be undone.</div>
+          </div>
+          <div class="modal-footer">
+			<input type="hidden" class="form-control" name="delete_id" id="delete_id" required> 
+            <div class="col"><a href="manage_plants.html" class="btn btn-white w-100">
+                    Cancel
+                  </a></div>
+                <div class="col"><a class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#modal-success"  onclick="deleteClick(document.getElementById('delete_id').value)">
+                    Delete data
+                  </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="modal modal-blur fade" id="modal-success" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+			<button type="button" class="btn-close" onclick="window.location.href='manage_plants.html';" aria-label="Close"></button>
+          <div class="modal-status text-center py-4bg-success">
+			
+		  </div>
+		  <br>
+          <div class="modal-body text-center py-4" id="msgbox">
+			
+          </div>
+          <div class="modal-footer">
+            <div class="w-100">
+              <div class="row">
+                <div class="col"><a href="manage_plants.html" class="btn btn-success w-100">
+                    OK
+                  </a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	<div class="modal modal-blur fade" id="no_record" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-status bg-info"></div>
+		  <br>
+          <div class="modal-body text-center py-4">
+            
+            <h3>No recommended fertilizer found</h3>
+    
+          </div>
+          <div class="modal-footer">
+            <div class="w-100">
+              <div class="row">
+                <div class="col"><a data-bs-dismiss="modal"  class="btn btn-info w-100">
+                    Ok
+                  </a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	</div>
+	</div>
+	</div>
+    
+    <!-- Libs JS -->
+	<script src="dist/js/jquery.min.js"></script>
+    <script src="./dist/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <!-- Tabler Core -->
+    <script src="./dist/js/tabler.min.js"></script>
+	<script src="dist/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="dist/js/jquery.dataTables.min.css" >
+	<style>
+	.show {
+		transition: opacity 1ms; // You can play with the 1
+	}
+	</style>
+	<script>
+		
+		$(document).ready(function(){
+				
+				var url = document.URL;
+				var soil_id = url.substring(url.lastIndexOf('=') + 1);
+				
+			
+				$('#view').DataTable( {
+				"searching": false,
+				"ajax": "api/view_plants.php?",
+				"bLengthChange": false,
+				"paging": false,
+				"bInfo": false,
+				"columns": [					
+					{"data": "ID"},	
+					{ "data": "plant_picture",
+						render:function(data, type, row)
+                      {
+                      return "<span class=avatar me-2' style='background-image: url(./upload/plant/"+row['plant_picture']+")'></span>"
+
+                      },
+					}, 
+					{ "data": "Plant Name"},
+					{ "data": "Plant Type"},
+					{ "data": null,
+						render: function (data, type, row) 
+						{
+                           
+							return '<a onclick="view_plant_info('+ data["ID"] +')"><input  class="btn btn-teal" type="button" value="View"></a>'
+
+                        },
+                        "targets": -1
+					},
+					{ "data": null,
+						render: function (data, type, row) 
+						{
+                           
+							return '<a onclick="choose('+ data["ID"] +')"><input  class="btn btn-info" type="button" value="Add"></a> <a onclick="view_choosen_fertilizer('+ data["ID"] +')"><input  class="btn btn-teal" type="button" value="View fertilizer"></a>'
+
+                        },
+                        "targets": -1
+					},
+					{ 
+					  "data": null,
+					  render:function(data, type, row)
+                      {
+                      return "<a onclick='editClick("+ data['ID'] +")'><button  class='btn btn-teal' type='submit' value='Edit'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'><path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/><path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z'/></svg></button></a> <a onclick='deleteClick1("+ data['ID'] +")'><button data-bs-toggle='modal' data-bs-target='#modal-danger'class='btn btn-danger' type='submit' value='Delete'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash-fill' viewBox='0 0 16 16'><path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/></svg></button></a>"
+
+                      },
+					  
+					},
+					{ "data": "Status",
+						render: function (data, type, row) 
+						{
+						    if(row.Status == 0){
+                           
+							    return '<a onclick="setStatus('+ row.ID +')"><input  class="btn btn-warning" type="submit" title="Click to update status" value="Not supported"></a>';
+						    }else{
+							    return '<a><input disabled class="btn btn-success" type="button" value="Supported"></a>';						        
+						    }
+
+                        },
+                        "targets": -1
+					}
+				]
+			} );
+			
+			$("#myInput").on("keyup", function(){
+				var value = $(this).val().toLowerCase();
+				$("#myTable tr").filter(function(){
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+			
+		});	
+		
+		function view_plant_info(data) {
+           window.location.href = "view_plant_info.html?id=" + data;
+              
+		  }
+		  
+		function editClick(data) {
+           window.location.href = "edit_plants.html?id=" + data;
+              
+		  }
+		  
+		  
+		function choose(data) {
+           window.location.href = "choose_fertilizer.html?id=" + data;
+              
+		  }
+		  
+		function view_choosen_fertilizer(data) {
+           
+		   
+		   $.ajax({    //create an ajax request to display.php
+				type: "GET",
+				url: "api/view_already_choose_fertilizer.php?id="+ data,             
+				dataType: "html",   //expect html to be returned                
+				success: function(response){                    
+					
+					if (response == 0) 
+						$("#no_record").modal('toggle');
+						
+						
+					else 
+						window.location.href = "view_choosen_fertilizer.html?id=" + data;
+						
+				}
+
+				});	
+              
+		}
+		
+		function deleteClick(data) {
+			  
+			   $.ajax({
+				method:"POST",
+				url:"api/delete_plants.php",
+				data:{id:data},
+				dataType:"html",
+				success:function(data){
+					$("#msgbox").html(data)
+				}
+			}); 	
+			    
+		  }
+		function setStatus(data) {
+			  
+			  var id = data;
+			   $.ajax({
+				method:"POST",
+				url:"api/setStatus.php?id="+id,
+				dataType:"html",
+				success:function(data){
+					alert("Status updated successfully");
+					location.reload();
+				}
+			}); 	
+			    
+		  }
+		  
+		function deleteClick1(data){
+
+			$("#delete_id").val(data);
+			
+		}
+	
+  </script>
+  
+  <script>
+	function getCookie(cName) {
+	    const name = cName + "=";
+	    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+	    const cArr = cDecoded .split('; ');
+	    let res;
+	    cArr.forEach(val => {
+		  if (val.indexOf(name) === 0) res = val.substring(name.length);
+	    })
+	    return res;
+	  }
+			
+	  function eraseCookie(name) {   
+		document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+	  }
+	  
+	  var user_name = getCookie('user_name');
+	  var pwd = getCookie('pwd');
+	  
+	  //alert(usr + " " + pwd + " " + uty);
+	  
+	  if(user_name == undefined){
+	      window.location.replace('index.html');
+	  }
+	  
+	  $(document).ready(function(){
+		  $.ajax({    //create an ajax request to display.php
+				type: "GET",
+				url: "api/get-current-login-data.php?id="+ user_name,             
+				dataType: "html",   //expect html to be returned                
+				success: function(response){                    
+					$("#user_login").html(response); 
+					//alert(response);
+				}
+
+			});	
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+          $("#logout").click(function(){
+            eraseCookie("user_name");
+            eraseCookie("pwd");
+            alert("Thank you for using the app.");
+            window.location.replace('index.html');
+          });
+        });
+	</script>
+  
+  </body>
+</html>

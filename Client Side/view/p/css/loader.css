@@ -1,0 +1,140 @@
+
+.cards{
+  max-width: 350px;
+  width: 100%;
+  background: #e8eaec;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  display: row-reverse;
+  margin: auto;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);  
+}
+#main-div{	
+  display: none;
+}
+.cards .header{
+  display: flex;
+  align-items: center;
+}
+.header .img{
+  height: 30px;
+  width: 30px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 45px;
+}
+.header .details{
+  margin-left: 20px;
+}
+.details span{
+  display: block;
+  background: #d9d9d9;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.details .name{
+  height: 15px;
+  width: 120px;
+}
+.details .about{
+  height: 15px;
+  width: 200px;
+  margin-top: 10px;
+}
+.details .info{
+  margin-top:10px;
+  height: 15px;
+  width: 130px;
+}
+.cards .descriptions{
+  margin: 25px 0;
+}
+.descriptions .line{
+  background: #d9d9d9;
+  border-radius: 10px;
+  height: 13px;
+  margin: 10px 0;
+  overflow: hidden;
+  position: relative;
+}
+.descriptions .line-1{
+  width: calc(100% - 15%);
+}
+.descriptions .line-3{
+  width: calc(100% - 40%);
+}
+.descriptions .line-4{
+  width: calc(100% - 60%);
+}
+.descriptions .line-5{
+  width: calc(100% - 80%);
+}
+.cards .btns{
+  display: flex;
+}
+.cards .btns .btn1{
+  height: 25px;
+  width: 100%;
+  background: #d9d9d9;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+.btns .btn-1{
+  margin-right: 8px;
+}
+.header .img::before,
+.details span::before,
+.descriptions .line::before,
+.btns .btn1::before{
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, #d9d9d9 0%, rgba(0,0,0,0.05) 20%, #d9d9d9 40%, #d9d9d9 100%);
+  background-repeat: no-repeat;
+  background-size: 450px 400px;
+  animation: shimmer 1s linear infinite;
+}
+.cards .img::before{
+  background-size: 650px 600px;
+}
+@keyframes shimmer {
+  0%{
+    background-position: -450px 0;
+  }
+  100%{
+    background-position: 450px 0;
+  }
+}
+
+.alert {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  max-width: 350px;
+  width: 100%;
+  padding: 20px;
+  background-color: #eed202;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}

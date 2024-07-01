@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head> 
+    <title>Soil Compatibility • Suggest plant</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#0134d4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/navbar_style.css">	
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/no_internet_style.css">
+
+</head>
+<body oncontextmenu="return false">
+  <div class="s-wrapper hide">
+    <div class="s-toast">
+      <div class="s-content">
+        <div class="icon"><img src="img/icons/wifi-on.png" alt=""></div>
+        <div class="details">
+          <span>INTERNET CONNECTED!</span>
+          <p>Your connection is now available.</p>
+        </div> 
+      </div>
+      <div class="close-icon"><img src="img/icons/wifi-close.png" alt=""></div>
+    </div>
+  </div>
+<div id="loader" class="center"></div>
+<div class="main-div">
+   <div class="header-area" id="headerArea">
+      <div class="container">
+        <div class="header-content header-style-four position-relative d-flex align-items-center justify-content-center">
+			<h3 class="mb-0">Suggest new plant</h3>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="page-content-wrapper py-3">
+      <div class="container">   
+        <div class="card mb-3 shadow-sm">
+          <div class="card-body direction-rtl">
+            <p style="font-size:15px">Suggest a plant that is not present in our system. After the review process, we will add it to our list of plants.</p>
+
+          </div>
+        </div>
+        <div class="card mb-3 shadow-sm">
+          <div class="card-body direction-rtl">
+			<center><p id="message" ></p></center>
+			<hr id="hide" style="display:none;">
+            <div class="text-center px-4"><img src="img/plant_img2.jpg" alt=""></div>
+            <div class="register-form mt-4 px-4">
+              <form action="" id="entry-form" class="login-form" method="POST">
+                <div class="form-group text-start mb-3">
+                    <input class="form-control" type="text" id="plant_name" pattern="[a-z A-Z]*" name="plant_name" placeholder="Plant name: ">
+					<br>
+					<textarea class="form-control" rows="4" cols="50" id="plant_info" name="plant_info" placeholder="Plant details (optional): "></textarea>
+                </div>
+                <button class="btn btn-primary w-100" id="submit" type="submit">SUBMIT PLANT</button>
+              </form>
+
+            </div>
+		  </div>
+		</div>
+       
+    
+      </div>
+    </div>
+	<br>
+	<br>
+	<nav class="nav">
+		<a href="search-city.html" class="nav__link">
+			<i class="material-icons nav__icon">travel_explore</i>
+			<span class="nav__text">
+				<span class="letters">FIND SOIL</span>				
+			</span>
+		</a>		
+		<a href="search-plant.html" class="nav__link ">
+			<i class="material-icons nav__icon">content_paste_search</i>
+			<span class="nav__text">
+				<span class="letters">PLANT</span>
+			</span>
+		</a>
+		<a href="soil-testing.html" class="nav__link ">
+			<i class="material-icons nav__icon">podcasts</i>
+			<span class="nav__text">
+				<span class="letters">TEST</span>				
+			</span>
+		</a>	
+		<a href="suggestion.html" class="nav__link nav__link--active">
+			<i class="material-icons nav__icon">add_location_alt</i>
+			<span class="nav__text">
+				<font class="ml1"><span class="text-wrapper"><span class="letters">SUGGEST</span></span></font>
+			</span>
+		</a>
+
+	</nav>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/animate.js"></script>
+<script>
+$(document).ready(function(){	
+	$.ajax({    //create an ajax request to display.php
+	type: "GET",
+	url: "https://soilcompatibility-main.000webhostapp.com/api/countComment.php",             
+	dataType: "html",              
+	success: function(response){                    
+		if(response==1)
+		{
+			document.getElementById('dot2').style.background = 'red';
+		}
+		else
+		{
+			document.getElementById('dot2').style.background = 'white';
+		}
+		
+	}
+	});
+});
+	
+	(function() {
+	  
+	  'use strict';
+	  window.addEventListener('load', function() {
+		// Get the forms we want to add validation styles to
+		var forms = document.getElementsByClassName('login-form');
+		// Loop over them and prevent submission
+		var validation = Array.prototype.filter.call(forms, function(form) {
+		  form.addEventListener('submit', function(event) {
+			if (form.checkValidity() === false) {
+			  event.preventDefault();
+			  event.stopPropagation();
+			}
+			else {
+				event.preventDefault();
+
+                var url = "https://soilcompatibility-main.000webhostapp.com/api/suggest_plant.php";
+					$.post(url, $("#entry-form").serialize(), function(data) {
+					//alert(data);
+					
+					if(data == 1){					
+						
+						document.getElementById('message').style.color = 'green';
+						document.getElementById('hide').style.display = 'block';
+						document.getElementById('message').innerHTML = 'Plant successfully requested. Thank you for the contribution.';
+						$("#plant_name").val("");
+						$("#plant_info").val("");
+															
+					}else if(data == 2)
+					{
+						$("#plant_name").val("");
+						$("#plant_info").val("");
+						document.getElementById('hide').style.display = 'block';
+						document.getElementById('message').style.color = 'red';
+						document.getElementById('message').innerHTML = 'Plant already exist or suggested by other user!';						
+					}
+					else if(data == 3)
+					{
+						$("#plant_name").val("");
+						$("#plant_info").val("");
+						document.getElementById('hide').style.display = 'block';
+						document.getElementById('message').style.color = 'red';
+						document.getElementById('message').innerHTML = 'Empty field!';						
+					}
+					else{
+						$("#plant_name").val("");
+						$("#plant_info").val("");
+						document.getElementById('hide').style.display = 'block';
+						document.getElementById('message').style.color = 'red';
+						document.getElementById('message').innerHTML = 'Error in adding the plant!';
+					}
+					
+				
+				});
+                
+			}
+			form.classList.add('was-validated');
+		  }, false);
+		});
+	  }, false);
+	  
+	  
+	})();
+
+</script>
+</html>

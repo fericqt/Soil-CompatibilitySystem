@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+	<title>Soil • Testing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/navbar_style.css">	
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/no_internet_style.css">
+</head>
+<body>
+  <!--NO INTER CONNECTION-->
+  <div class="s-wrapper hide">
+    <div class="s-toast">
+      <div class="s-content">
+        <div class="icon"><img src="img/icons/wifi-on.png" alt=""></div>
+        <div class="details">
+          <span>INTERNET CONNECTED!</span>
+          <p>Your connection is now available.</p>
+        </div> 
+      </div>
+      <div class="close-icon"><img src="img/icons/wifi-close.png" alt=""></div>
+    </div>
+  </div>
+
+
+<!--MAIN DIV--> 
+   <div class="header-area" id="headerArea">
+      <div class="container">
+        <div class="header-content header-style-four position-relative d-flex align-items-center justify-content-center">
+			<h3 class="mb-0">Soil Testing</h3>		
+        </div>		
+      </div>
+    </div>
+	
+	<div>
+    <div class="page-content-wrapper py-3">
+      <div class="container">
+	     <div class="card mb-3 shadow-sm">
+          <div class="card-body direction-rtl">
+            <p style="color:red;">Must have the following:</p>
+			<div class="single-setting-panel"><a>
+                <div class="icon-wrapper bg-info"><i class="bi bi-thermometer-high"></i></div>Soil pH - Moisture Meter</a></div>
+				<p style="margin-left:40px;">or any gadget that can gather soil data (soil pH level & soil moisture level).</p>
+          </div>
+        </div>
+        <div class="card user-info-card mb-3">
+          <div class="card-body d-flex align-items-center">
+			<p style="font-size: 17px;">How it works?<br>After inputting the correct soil pH and soil moisture, the system will display all the compatible plants and compatible locations together with their soil pH and soil moisture.</p>
+          </div>
+        </div>
+		<!--input for SOIL PH & MOISTURE-->
+        <div id="input" style="display: block;" class="card mb-3 shadow-sm">
+         <div class="card-body direction-rtl">
+			<center><p id="message"></p></center>
+			<p style="font-size:20px; font-weight:bold;">Test your soil here</p>
+			<hr style="color: black"/>
+             <form action="" id="entry-form" class="test-form" method="POST">
+              <div class="form-group mb-3">		
+                <label class="form-label" for="soilPH">Soil pH level</label>
+                <input class="form-control" name="soilPH" id="soilPH" type="text" placeholder="Ex. 5.5">
+              </div>
+              <div class="form-group mb-3">
+                <label class="form-label" for="soilMoisture">Soil moisture level</label>
+                <input class="form-control" name="soilMoisture" id="soilMoisture" type="text" placeholder="Ex. 5" >
+              </div>            
+              <button onclick="searchCompatible(document.getElementById('soilPH').value,document.getElementById('soilMoisture').value)" class="btn btn-success w-100" id="submit" type="submit"><span style="display: block;" id="test">TEST</span><span style="display: none;"id="load">PROCESSING</span></button>
+            </form>
+          </div>
+        </div>
+		<!--result-->
+        <div id="result" style="display: none;"  class="card mb-3 shadow-sm">
+          <div class="card-body direction-rtl">		  
+			<table id="TablePlant" style="width:100%;" class="table table-hover">
+				<thead>
+					<tr>
+						<th class="header" scope="col">Plant</th>
+						<th class="header" scope="col">Result</th>
+					</tr>
+				</thead>
+			<tbody id="myTable"></tbody>
+			</table>					
+		  </div>
+		</div>
+        <div id="result1" style="display: none;"  class="card mb-3 shadow-sm">
+          <div class="card-body direction-rtl">		  
+			<table id="BrgyPlant" style="width:100%;" class="table table-hover">
+				<thead>
+					<tr>
+                        <th class="header" scope="col">Barangay</th>
+						<th class="header" scope="col">Soil pH</th>
+						<th class="header" scope="col">Soil Moisture</th>
+					</tr>
+				</thead>
+			<tbody id="myTable"></tbody>
+			</table>					
+		  </div>
+		</div>
+		<div style="display:none" id="geoLocation">
+			<input class="uid" name="uid" id="uid" type="hidden">
+			<button  id="button" class="btn btn-success w-100" onclick="testAgain();"><span style="display: block" id="t_again">TEST AGAIN</span><span style="display: none;" id="countdown">TEST AGAIN 5s</span><span style="display: none;" id="loadd">PLEASE WAIT</span></button>
+			<button id="mapButton" style="margin-top: 10px;" class="btn btn-info w-100" onclick="viewMap(document.getElementById('uid').value)">VIEW MAP</button>
+		</div>	
+		
+      </div>
+    </div>
+</div>
+	<br>
+	<nav class="nav">
+		<a href="search-city.html" class="nav__link">
+			<i class="material-icons nav__icon">travel_explore</i>
+			<span class="nav__text">
+				<span class="letters">FIND SOIL</span>				
+			</span>
+		</a>		
+		<a href="search-plant.html" class="nav__link ">
+			<i class="material-icons nav__icon">content_paste_search</i>
+			<span class="nav__text">
+				<span class="letters">PLANT</span>
+			</span>
+		</a>
+		<a href="#" class="nav__link nav__link--active">
+			<i class="material-icons nav__icon">podcasts</i>
+			<span class="nav__text">
+				<font class="ml1"><span class="text-wrapper"><span class="letters">TEST</span></span></font>
+			</span>
+		</a>	
+		<a href="suggestion.html" class="nav__link">
+			<i class="material-icons nav__icon">add_location_alt</i>
+			<span class="nav__text">
+				<span class="letters">SUGGEST</span>
+			</span>
+		</a>
+
+	</nav>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="js/animate.js"></script>
+<script>
+
+function searchCompatible(soilPH,soilMoisture){
+document.getElementById('submit').disabled = true;
+document.getElementById("uid").value=(soilPH);
+var soilData = soilPH.concat("/" ,soilMoisture);
+document.getElementById('test').style.display = 'none';
+document.getElementById('load').style.display = 'block';
+setTimeout(function(){
+	document.getElementById('button').disabled = true;
+	document.getElementById('input').style.display = 'none';
+	document.getElementById('result').style.display = 'block';
+	document.getElementById('result1').style.display = 'block';
+	document.getElementById('t_again').style.display = 'none';
+	count();
+	document.getElementById('countdown').style.display = 'block';
+	document.getElementById('geoLocation').style.display = 'block';
+},3000);	
+$(document).ready(function(){
+    $('#TablePlant').DataTable( {
+      "pagingType": "simple_numbers",
+      "searching": false,
+	  "paging": false,
+	  "bInfo":false,
+	  "bDestroy": true,
+      "ordering": false,
+      "lengthChange": false,
+      "ajax": "https://soilcompatibility-main.000webhostapp.com/api/searchCompatible.php?id="+soilData,
+      "columns": [					
+					{ "data": "Plant" },
+					{ "data": "Result" }
+				]
+			});
+			
+    $('#BrgyPlant').DataTable( {
+      "pagingType": "simple_numbers",
+      "searching": false,
+	  "paging": false,
+	  "bInfo":false,
+	  "bDestroy": true,
+      "ordering": false,
+      "lengthChange": false,
+      "ajax": "https://soilcompatibility-main.000webhostapp.com/api/searchCompatibleBrgy.php?id="+soilData,
+      "columns": [					
+					{ "data": "Brgy" },
+					{ "data": "Soil pH" },
+					{ "data": "Soil Moisture" }
+				]
+			});			
+            $('.dataTables_length').addClass('bs-select');
+			$.fn.dataTable.ext.errMode = () => alert('Something went wrong. Please try again!');	
+			
+	});
+	setInterval(function(){
+	tableData();	
+	}, 1000);
+	function tableData(){
+    var rowCount = $('#TablePlant tbody tr').length;
+    if(rowCount == 1){
+        $('#mapButton').attr('disabled','disabled');
+    } else {
+        $('#mapButton').removeAttr('disabled');
+    }
+	}
+}		
+
+function viewMap(uid){
+
+	var ids = uid; 
+	window.location.href = "soil-testing-map.html?id="+ids;
+			
+}
+
+
+setInterval(function(){
+	checkInput();	
+}, 100);
+
+function checkInput(){
+	if((document.getElementById('soilPH').value == "" ) && (document.getElementById('soilMoisture').value == ""))
+	{
+		document.getElementById('submit').disabled = true;
+		
+	}else if((document.getElementById('soilPH').value == "" ) || (document.getElementById('soilMoisture').value == "")){
+		
+		document.getElementById('submit').disabled = true;
+		
+	}else{
+	
+		if((isNaN(document.getElementById('soilPH').value)) || (isNaN(document.getElementById('soilMoisture').value))){
+		
+			document.getElementById('message').style.color = 'red';
+			document.getElementById('message').innerHTML = 'Please input only numbers';		
+			document.getElementById('submit').disabled = true;
+			
+		}else if((isNaN(document.getElementById('soilPH').value)) && (isNaN(document.getElementById('soilMoisture').value))){
+		
+			document.getElementById('submit').disabled = true;
+			
+		}else{
+			
+			if((document.getElementById('soilPH').value < 3) || (document.getElementById('soilMoisture').value < 1 ))
+			{
+				document.getElementById('message').style.color = 'red';
+				document.getElementById('message').innerHTML = 'Soil pH cannot be lower than 3 and soil moisture cannot be lower than 1';			
+			}else if((document.getElementById('soilPH').value < 3) && (document.getElementById('soilMoisture').value < 1 ))
+			{
+				document.getElementById('message').style.color = 'red';
+				document.getElementById('message').innerHTML = 'Soil pH cannot be lower than 3 and soil moisture cannot be lower than 1';	
+			}else if((document.getElementById('soilPH').value > 8) && (document.getElementById('soilMoisture').value > 8 ))
+			{
+				document.getElementById('message').style.color = 'red';
+				document.getElementById('message').innerHTML = 'Soil pH and soil moisture cannot be higher than 8';	
+			}else if((document.getElementById('soilPH').value > 8) || (document.getElementById('soilMoisture').value > 8 ))
+			{
+				document.getElementById('message').style.color = 'red';
+				document.getElementById('message').innerHTML = 'Soil pH and soil moisture cannot be higher than 8';	
+			}
+			else{
+				var isValid = /^\d+\.\d+$/.test(document.getElementById('soilPH').value);
+				if(isValid == false){
+					document.getElementById('message').style.color = 'red';
+					document.getElementById('message').innerHTML = 'Invalid input.<br> Missing with (.) in soil ph';		
+					document.getElementById('submit').disabled = true;				
+				}else{
+				document.getElementById('message').style.color = 'green';
+				document.getElementById('message').innerHTML = 'Input is valid';		
+				document.getElementById('submit').disabled = false;
+				}
+			}
+			
+		}
+		
+	}
+	
+}
+
+
+
+function testAgain()
+{
+	document.getElementById('t_again').style.display = 'none';
+	document.getElementById('loadd').style.display = 'block';
+	document.getElementById('button').disabled = true;
+	setTimeout(function(){
+		location.reload();
+	},3000);
+	
+
+}
+		
+
+	
+function count(){
+	
+	var timeleft = 4;
+	var downloadTimer = setInterval(function(){
+	if(timeleft <= 0){
+		clearInterval(downloadTimer);
+		document.getElementById("button").disabled = false;
+		document.getElementById('t_again').style.display = 'block';
+		document.getElementById('countdown').style.display = 'none';
+	} else {
+		document.getElementById("countdown").innerHTML = "TEST AGAIN "+timeleft+"s";
+		document.getElementById("button").disabled = true;
+		
+	}
+	timeleft -= 1;
+	}, 1000);
+}
+
+</script>
+</html>
